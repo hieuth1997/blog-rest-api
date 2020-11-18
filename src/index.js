@@ -7,6 +7,7 @@ const app = express();
 const port = 3000;
 //http logger.
 app.use(morgan("combined"));
+app.use(express.static(path.join(__dirname, "public/")));
 
 app.get("/", (req, res) => {
     res.render("home");

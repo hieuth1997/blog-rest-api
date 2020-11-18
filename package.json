@@ -4,6 +4,7 @@
     "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
     "main": "src/index.js",
     "scripts": {
+        "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
         "start": "nodemon --inspect src/index.js 80",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -20,6 +21,7 @@
     },
     "devDependencies": {
         "morgan": "^1.10.0",
+        "node-sass": "^5.0.0",
         "nodemon": "^2.0.6"
     }
 }
