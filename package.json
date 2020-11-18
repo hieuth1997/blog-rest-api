@@ -34,6 +34,6 @@
         }
     },
     "lint-staged": {
-        "*.{js,json,scss,md}": "prettier  --single-quote --trailing-comma all --write --tab-width 4"
+        "src/**/*.{js,json,scss,md}": "prettier  --single-quote --trailing-comma all --write --tab-width 4"
     }
 }
