@@ -3,12 +3,18 @@ const { Mongoose } = require('mongoose');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Blog = new Schema({
-    author: { type: String },
-    title: { type: String },
-    body: { type: String },
-    createdDate: { type: Date, default: Date.now },
-    updatedDate: { type: Date, default: Date.now },
-});
+const blogSchema = new Schema(
+    {
+        author: { type: String },
+        title: { type: String },
+        body: { type: String },
+        createdDate: { type: Date, default: Date.now },
+        updatedDate: { type: Date, default: Date.now },
+    },
+    {
+        collection: 'Blogs',
+    },
+);
 
-module.exports = mongoose.model('Blog', Blog);
+const Blog = mongoose.model('Blog', blogSchema);
+module.exports = Blog;

@@ -1,11 +1,23 @@
 const mongoose = require('mongoose');
+var env = require('dotenv').config();
 async function connect() {
     try {
-        await mongoose.connect(
-            'mongodb://cokker1997:elXIStUNpJb3T2eJv3WtcwSQBU7qTG9AxKwxWFDetpOIqXOtwrb4NgddncBj6VaCaMu2wHxMXztm80Mz37pWXQ==@cokker1997.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@cokker1997@/uit_blog_pd',
+        mongoose.connect(
+            'mongodb://' +
+                process.env.COSMOSDB_HOST +
+                ':' +
+                process.env.COSMOSDB_PORT +
+                '/' +
+                process.env.COSMOSDB_DBNAME +
+                '?ssl=true&replicaSet=globaldb',
             {
+                auth: {
+                    user: process.env.COSMOSDB_USER,
+                    password: process.env.COSMOSDB_PASSWORD,
+                },
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
+                retryWrites: false,
             },
         );
         console.log('connect successfully');

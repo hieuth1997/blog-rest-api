@@ -1,14 +1,13 @@
 const Blog = require('../models/blogs');
+const { multipleMongoToObject } = require('../../utils/mongoose');
 class SitesController {
-    home(req, res) {
-        console.log(Blog);
-        Blog.find({}, function (err, blogs) {
-            if (!err) {
-                res.json(blogs);
-            } else {
-                res.status(500).json({ error: "Can't connect database" });
-            }
-        });
+    home(req, res, next) {
+        Blog.find({})
+            .then((blogs) => {
+                const data = multipleMongoToObject(blogs);
+                return res.render('home', data);
+            })
+            .catch((err) => next(err));
     }
     search(req, res) {
         res.render('search');

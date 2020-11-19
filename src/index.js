@@ -18,8 +18,7 @@ route(app);
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 //set home directory
-app.set('views', path.join(__dirname, 'resources/views'));
-app.set('news', path.join(__dirname, 'resources/news'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(` app listening at http://localhost:${port}`);
 });
