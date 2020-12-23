@@ -2,8 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
+    "start": "nodemon --inspect --exec babel-node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,5 +13,18 @@
   },
   "author": "hieuNT",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/hieunt1997/backend#readme"
+  "homepage": "https://bitbucket.org/hieunt1997/backend#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "babel-cli": "^6.26.0",
+    "nodemon": "^2.0.6"
+  }
 }
