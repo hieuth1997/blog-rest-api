@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://hieunt1997@bitbucket.org/hieunt1997/backend.git"
+  },
+  "author": "hieuNT",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/hieunt1997/backend#readme"
+}
