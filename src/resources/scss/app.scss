@@ -4,7 +4,16 @@ h1 {
     color: $red-color;
 }
 .app {
-    .card-blog-item {
-        margin-top: 16px;
+    .header {
+        .my-nav {
+            background-color: $gray-color;
+
+            img {
+                height: 34px;
+            }
+        }
+        .card-blog-item {
+            margin-top: 16px;
+        }
     }
 }
