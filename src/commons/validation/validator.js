@@ -1,4 +1,5 @@
-import Joi from 'joi';
+import Joi from '@hapi/joi';
+import BaseError from '../helpers/baseError';
 const isValid = (option) => (req, res, next) => {
   // convert key object to array
 

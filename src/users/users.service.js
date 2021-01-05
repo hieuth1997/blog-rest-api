@@ -7,10 +7,10 @@ export default {
       //save in database
       return await newUser.save();
     } catch (error) {
-      console.log(error);
       throw new BaseError({
         statusCode: 422,
         error: 'Email was registered.',
+        errors: [error],
       });
     }
   },

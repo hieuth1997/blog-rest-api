@@ -1,22 +1,17 @@
-import Joi from 'joi';
+import Joi from '@hapi/joi';
 export const register = {
   body: {
-    email: Joi.string().email().required().label('Email'),
-    password: Joi.string()
-      .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
-      .required()
-      .label('Password'),
+    email: Joi.string().email().required().label('email'),
+    password: Joi.string().min(3).required().label('Password'),
     rePassword: Joi.string()
       .valid(Joi.ref('password'))
+      .required()
       .label('Confirm password'),
   },
 };
 export const login = {
   body: {
-    email: Joi.string().email().required().label('Email'),
-    password: Joi.string()
-      .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
-      .required()
-      .label('Password'),
+    email: Joi.string().email().required().label('email'),
+    password: Joi.string().min(3).required().label('Password'),
   },
 };

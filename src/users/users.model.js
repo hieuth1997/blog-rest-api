@@ -24,8 +24,6 @@ const userSchema = new mongoose.Schema(
     },
     phoneNumber: {
       type: String,
-      unique: true,
-      lowercase: true,
       trim: true,
     },
     gender: {
@@ -57,39 +55,17 @@ const userSchema = new mongoose.Schema(
   },
   { timestamp: true },
 );
-userSchema.pre('save', function (next) {
+userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
-    this.hashPassword();
+    let hashPassword = await this.hashPassword();
+    this.password = hashPassword;
   }
   return next();
 });
 userSchema.method('hashPassword', async function () {
-  try {
-    let hashPassword = await bcrypt.hash(
-      this.password,
-      10,
-      function (err, hash) {
-        if (err) {
-          return err;
-        }
-        return hash;
-      },
-    );
-    this.password = hashPassword;
-  } catch (err) {
-    throw err;
-  }
+  let hashPassword = await bcrypt.hash(this.password, 10);
+  return hashPassword;
 });
-userSchema.method('comparePassword', function (password) {
-  let isCompared;
-  bcrypt.compare(myPlaintextPassword, hash, function (err, result) {
-    if (err) {
-      return err;
-    }
-    isCompared = result;
-    // result == true
-  });
-  return isCompared;
-});
+userSchema.method('comparePassword', async function (password) {});
 export const userModel = mongoose.model('user', userSchema);
 export default userModel;

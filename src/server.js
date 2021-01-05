@@ -22,8 +22,9 @@ app.use(customLogger);
 //body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(errorCatcher, errorHandler);
 app.use('/api', router);
+app.use(errorCatcher, errorHandler);
+
 app.listen(port, () => {
   console.log(`server is running at  http://localhost:${port}`);
 });
