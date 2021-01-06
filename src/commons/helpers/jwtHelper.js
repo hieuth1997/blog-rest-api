@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 const generateToken = (user, secretSignature, tokenLife) => {
   return new Promise((resolve, reject) => {
     jwt.sign(
-      { data: user },
+      { user },
       secretSignature,
       {
         algorithm: 'HS256',

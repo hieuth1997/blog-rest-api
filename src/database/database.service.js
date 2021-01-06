@@ -9,7 +9,11 @@ const option = {
 };
 const connect = () => {
   mongoose.connect(mongoUri, option, (err) => {
-    console.log(err || 'database is connected');
+    if (err) {
+      console.log('connect database failed');
+    } else {
+      console.log('database is connected');
+    }
   });
 };
 export default { connect };

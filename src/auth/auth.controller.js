@@ -9,6 +9,7 @@ export default {
       const newUser = req.body;
       const user = await userService.createOne(newUser);
       if (user) {
+        await authService.sendRegisterEmail(user.email);
         const { email, active } = user;
         const customUser = { email, active };
         return new BaseResponse({
@@ -38,8 +39,21 @@ export default {
         new BaseError({
           statusCode: 401,
           error: 'incorrect email or password',
+          errors: [error],
         }),
       );
+    }
+  },
+  async getProfile(req, res, next) {
+    try {
+      if (req.user) {
+        return new BaseResponse({
+          statusCode: 200,
+          data: { user: req.user.transform() },
+        }).return(res);
+      }
+    } catch (error) {
+      next(error);
     }
   },
 };

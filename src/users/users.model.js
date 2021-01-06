@@ -71,5 +71,22 @@ userSchema.method('comparePassword', async function (password) {
   const isEqual = await bcrypt.compare(password, this.password);
   return isEqual;
 });
+userSchema.method('transform', function () {
+  const transformed = {};
+  const fields = [
+    '_id',
+    'active',
+    'phoneNumber',
+    'gender',
+    'isSuggestPropertiesOnEmail',
+    'isNotifyPropertyUpdate',
+    'role',
+    'avatar',
+  ];
+  fields.forEach((field) => {
+    transformed[field] = this[field];
+  });
+  return transformed;
+});
 export const userModel = mongoose.model('user', userSchema);
 export default userModel;
