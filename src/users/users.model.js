@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema(
     phoneNumber: {
       type: String,
       trim: true,
+      default: '',
     },
     gender: {
       type: String,
@@ -66,6 +67,9 @@ userSchema.method('hashPassword', async function () {
   let hashPassword = await bcrypt.hash(this.password, 10);
   return hashPassword;
 });
-userSchema.method('comparePassword', async function (password) {});
+userSchema.method('comparePassword', async function (password) {
+  const isEqual = await bcrypt.compare(password, this.password);
+  return isEqual;
+});
 export const userModel = mongoose.model('user', userSchema);
 export default userModel;
