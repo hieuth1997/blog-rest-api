@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 import { authRouter } from './auth/auth.route';
 import { authorize } from './auth/auth.middleware';
+import { newsRouter } from './news/news.route';
 import { userRouter } from './users/users.route';
 
 router.use('/auth', authRouter);

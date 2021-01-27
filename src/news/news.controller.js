@@ -1,5 +1,5 @@
 import newsService from './news.service';
-import BaseResponse from '../commons/helpers/response';
+import BaseResponse from '../commons/helpers/baseResponse';
 
 export default {
   async create(req, res, next) {
