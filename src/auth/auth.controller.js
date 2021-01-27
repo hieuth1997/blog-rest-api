@@ -9,8 +9,8 @@ export default {
       const newUser = req.body;
       const user = await userService.createOne(newUser);
       if (user) {
-        await authService.sendRegisterEmail(user.email);
         const { email, active } = user;
+        //  await authService.sendRegisterEmail(email);
         const customUser = { email, active };
         return new BaseResponse({
           statusCode: 200,
@@ -29,9 +29,12 @@ export default {
       let token = await authService.createToken(user._id, user.role);
       console.log(isRightPassword);
       if (user && user.active && isRightPassword) {
+        const { _id, active, email, firstName, lastName } = user;
+        const userName = { firstName, lastName };
+        const customUser = { _id, active, email, name: userName };
         return new BaseResponse({
           statusCode: 200,
-          data: { message: 'login successfully', user, token },
+          data: { message: 'login successfully', user: customUser, token },
         }).return(res);
       }
     } catch (error) {

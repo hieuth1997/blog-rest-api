@@ -7,12 +7,26 @@ const userSchema = new mongoose.Schema(
       required: true,
       default: true,
     },
+    firstName: {
+      type: String,
+      required: true,
+      lowercase: true,
+      default: '',
+      maxLength: 20,
+    },
+    lastName: {
+      type: String,
+      required: true,
+      lowercase: true,
+      default: '',
+    },
     email: {
       type: String,
       unique: true,
       lowercase: true,
       required: true,
       trim: true,
+      minLength: 4,
     },
     isVerified: {
       type: Boolean,
